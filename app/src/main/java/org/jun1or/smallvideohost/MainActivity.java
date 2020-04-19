@@ -10,7 +10,6 @@ import android.view.View;
 
 import org.jun1or.smallvideo.JCameraView;
 import org.jun1or.smallvideo.listener.JCameraListener;
-import com.istrong.smallvideohost.R;
 
 import java.io.File;
 
