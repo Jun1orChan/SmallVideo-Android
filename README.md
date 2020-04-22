@@ -11,15 +11,11 @@
 - 前置摄像头
 
 ## 使用方式
-1.在根目录build.gradle文件中添加
-```gradle
 
- ```
-
-2.模块build.gradle文件中添加
+1.模块build.gradle文件中添加
 
 ```gradle
- 
+    implementation 'org.jun1or.baselib:smallvideo:1.0.0'
  ```
 3.使用方式参考Demo
 

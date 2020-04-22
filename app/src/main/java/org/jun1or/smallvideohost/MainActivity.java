@@ -1,8 +1,12 @@
 package org.jun1or.smallvideohost;
 
+import android.Manifest;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,10 +20,12 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity {
     private JCameraView mJCameraView;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        requestPermissions(new String[]{Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO},0);
         mJCameraView = (JCameraView) findViewById(R.id.jcameraview);
         //设置视频保存路径
         mJCameraView.setSaveVideoPath(Environment.getExternalStorageDirectory().getPath() + File.separator + "JCamera");

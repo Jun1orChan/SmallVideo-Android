@@ -7,7 +7,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.istrong.util.DisplayUtil;
+import org.jun1or.util.DisplayUtil;
+
 
 public class FoucsView extends View {
     private int mSize;

@@ -20,15 +20,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
-import com.istrong.smallvideo.R;
 
 import org.jun1or.smallvideo.listener.CaptureListener;
 import org.jun1or.smallvideo.listener.JCameraListener;
 import org.jun1or.smallvideo.listener.ReturnListener;
 import org.jun1or.smallvideo.listener.TypeListener;
 import org.jun1or.smallvideo.state.CameraMachine;
-import com.istrong.util.DisplayUtil;
-import com.istrong.util.FileUtil;
+import org.jun1or.util.DisplayUtil;
+import org.jun1or.util.FileUtil;
 
 
 public class JCameraView extends FrameLayout implements CameraInterface.CameraOpenOverCallback, SurfaceHolder

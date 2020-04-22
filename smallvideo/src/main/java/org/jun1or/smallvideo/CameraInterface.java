@@ -26,8 +26,8 @@ import android.widget.ImageView;
 import org.jun1or.smallvideo.util.AngleUtil;
 import org.jun1or.smallvideo.util.CameraParamUtil;
 import org.jun1or.smallvideo.util.DeviceUtil;
-import com.istrong.util.DisplayUtil;
-import com.istrong.util.FileUtil;
+import org.jun1or.util.DisplayUtil;
+import org.jun1or.util.FileUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
