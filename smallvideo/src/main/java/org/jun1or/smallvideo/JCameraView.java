@@ -9,7 +9,6 @@ import android.hardware.Camera;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,6 +19,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
+
+import androidx.annotation.RequiresApi;
 
 import org.jun1or.smallvideo.listener.CaptureListener;
 import org.jun1or.smallvideo.listener.JCameraListener;
