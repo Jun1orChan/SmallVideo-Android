@@ -8,7 +8,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import org.jun1or.util.DisplayUtil;
+import org.jun1or.smallvideo.util.DisplayUtil;
 
 
 public class FoucsView extends View {

@@ -63,8 +63,8 @@ public class BorrowPictureState implements State {
 
     @Override
     public void confirm() {
-        mCameraMachine.getView().confirmState(JCameraView.TYPE_PICTURE);
         mCameraMachine.setState(mCameraMachine.getPreviewState());
+        mCameraMachine.getView().confirmState(JCameraView.TYPE_PICTURE);
     }
 
     @Override

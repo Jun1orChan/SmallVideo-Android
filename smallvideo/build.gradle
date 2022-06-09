@@ -1,11 +1,10 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
     }
@@ -22,15 +21,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:1.1.0"
-    implementation 'org.jun1or.baselib:util:1.0.1'
+//    implementation 'org.jun1or.baselib:util:1.0.1'
 }
 
-//添加
-publish {
-    userOrg = 'jun1or'//bintray.com用户名
-    groupId = 'org.jun1or.baselib'//jcenter上的路径
-    artifactId = 'smallvideo'//项目名称
-    publishVersion = '1.0.1'//版本号
-    desc = ''//描述，不重要
-    website = 'https://github.com/Jun1orChan/SmallVideo-Android'//网站，不重要
-}

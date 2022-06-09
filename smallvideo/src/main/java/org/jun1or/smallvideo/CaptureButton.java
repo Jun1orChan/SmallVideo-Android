@@ -137,13 +137,16 @@ public class CaptureButton extends View {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (event.getPointerCount() > 1 || mState != STATE_IDLE)
+                if (event.getPointerCount() > 1 || mState != STATE_IDLE) {
                     break;
+                }
                 mEvent_Y = event.getY();     //记录Y值
-                mState = STATE_PRESS;        //修改当前状态为点击按下
+                mState = STATE_PRESS;      //修改当前状态为点击按下
                 //判断按钮状态是否为可录制状态
-                if ((mBtnState == BUTTON_STATE_ONLY_RECORDER || mBtnState == BUTTON_STATE_BOTH))
-                    postDelayed(mLongPressRunnable, LONGPRESS_DELAY);    //同时延长300启动长按后处理的逻辑Runnable
+                if ((mBtnState == BUTTON_STATE_ONLY_RECORDER || mBtnState == BUTTON_STATE_BOTH)) {
+                    //同时延长300启动长按后处理的逻辑Runnable
+                    postDelayed(mLongPressRunnable, LONGPRESS_DELAY);
+                }
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (mCaptureLisenter != null

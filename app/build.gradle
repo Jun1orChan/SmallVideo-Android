@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
     defaultConfig {
         applicationId "org.jun1or.smallvideohost"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
     }
@@ -20,6 +20,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:1.1.0"
-//    implementation project(path: ':smallvideo')
-    implementation 'org.jun1or.baselib:smallvideo:1.0.1'
+    implementation project(path: ':smallvideo')
+//    implementation 'org.jun1or.baselib:smallvideo:1.0.1'
 }

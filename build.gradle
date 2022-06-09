@@ -4,11 +4,10 @@ buildscript {
     
     repositories {
         google()
-        jcenter()
+        maven { url 'https://repo1.maven.org/maven2/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath 'com.novoda:bintray-release:0.9.1'
 
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -19,7 +18,13 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        maven {
+            url 'https://maven.aliyun.com/nexus/content/groups/public/'
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven { url 'https://repo1.maven.org/maven2/' }
     }
 }
 

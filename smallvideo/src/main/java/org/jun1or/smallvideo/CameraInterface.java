@@ -18,6 +18,7 @@ import android.hardware.SensorManager;
 import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -26,8 +27,8 @@ import android.widget.ImageView;
 import org.jun1or.smallvideo.util.AngleUtil;
 import org.jun1or.smallvideo.util.CameraParamUtil;
 import org.jun1or.smallvideo.util.DeviceUtil;
-import org.jun1or.util.DisplayUtil;
-import org.jun1or.util.FileUtil;
+import org.jun1or.smallvideo.util.DisplayUtil;
+import org.jun1or.smallvideo.util.FileUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -98,9 +99,9 @@ public class CameraInterface implements Camera.PreviewCallback {
         return mCameraInterface;
     }
 
-    public void setSwitchView(ImageView mSwitchView, ImageView mFlashLamp) {
-        this.mSwitchView = mSwitchView;
-        this.mFlashLamp = mFlashLamp;
+    public void setSwitchView(ImageView switchView, ImageView flashLamp) {
+        this.mSwitchView = switchView;
+        this.mFlashLamp = flashLamp;
         if (mSwitchView != null) {
             mCameraAngle = CameraParamUtil.getInstance().getCameraDisplayOrientation(mSwitchView.getContext(),
                     SELECTED_CAMERA);
@@ -253,8 +254,9 @@ public class CameraInterface implements Camera.PreviewCallback {
     }
 
     public void setFlashMode(String flashMode) {
-        if (mCamera == null)
+        if (mCamera == null) {
             return;
+        }
         Camera.Parameters params = mCamera.getParameters();
         params.setFlashMode(flashMode);
         mCamera.setParameters(params);
@@ -565,8 +567,8 @@ public class CameraInterface implements Camera.PreviewCallback {
         mMediaRecorder.setPreviewDisplay(surface);
 
         mVideoFileName = "video_" + System.currentTimeMillis() + ".mp4";
-        if (mSaveVideoPath.equals("")) {
-            mSaveVideoPath = Environment.getExternalStorageDirectory().getPath();
+        if (TextUtils.isEmpty(mSaveVideoPath)) {
+            mSaveVideoPath = mSwitchView.getContext().getCacheDir().getPath();
         }
         mVideoFileAbsPath = mSaveVideoPath + File.separator + mVideoFileName;
         mMediaRecorder.setOutputFile(mVideoFileAbsPath);
@@ -589,6 +591,12 @@ public class CameraInterface implements Camera.PreviewCallback {
         if (!mIsRecorder) {
             return;
         }
+        if (isShort) {
+            if (FileUtil.deleteFile(mVideoFileAbsPath)) {
+                callback.recordResult(null, null);
+            }
+            return;
+        }
         if (mMediaRecorder != null) {
             mMediaRecorder.setOnErrorListener(null);
             mMediaRecorder.setOnInfoListener(null);
@@ -605,12 +613,6 @@ public class CameraInterface implements Camera.PreviewCallback {
                 }
                 mMediaRecorder = null;
                 mIsRecorder = false;
-            }
-            if (isShort) {
-                if (FileUtil.deleteFile(mVideoFileAbsPath)) {
-                    callback.recordResult(null, null);
-                }
-                return;
             }
             doStopPreview();
             String fileName = mSaveVideoPath + File.separator + mVideoFileName;

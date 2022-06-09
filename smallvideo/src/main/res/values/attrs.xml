@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="smallvideo_JCameraView">
-        <attr name="duration_max"/>
+        <attr name="duration_max" format="integer"/>
     </declare-styleable>
 </resources>

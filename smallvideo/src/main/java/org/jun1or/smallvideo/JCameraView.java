@@ -27,12 +27,12 @@ import org.jun1or.smallvideo.listener.JCameraListener;
 import org.jun1or.smallvideo.listener.ReturnListener;
 import org.jun1or.smallvideo.listener.TypeListener;
 import org.jun1or.smallvideo.state.CameraMachine;
-import org.jun1or.util.DisplayUtil;
-import org.jun1or.util.FileUtil;
+import org.jun1or.smallvideo.util.DisplayUtil;
+import org.jun1or.smallvideo.util.FileUtil;
 
 
-public class JCameraView extends FrameLayout implements CameraInterface.CameraOpenOverCallback, SurfaceHolder
-        .Callback, CameraView {
+public class JCameraView extends FrameLayout implements CameraInterface.CameraOpenOverCallback,
+        SurfaceHolder.Callback, CameraView {
     //Camera状态机
     private CameraMachine mCameraMachine;
 
@@ -121,23 +121,24 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
     private void initView() {
         setWillNotDraw(false);
         View view = LayoutInflater.from(mContext).inflate(R.layout.smallvideo_view, this);
-        mVideoView = (VideoView) view.findViewById(R.id.video_preview);
-        mPhoto = (ImageView) view.findViewById(R.id.image_photo);
-        mSwitchCamera = (ImageView) view.findViewById(R.id.image_switch);
-        mFlashLamp = (ImageView) view.findViewById(R.id.image_flash);
+        mVideoView = view.findViewById(R.id.video_preview);
+        mPhoto = view.findViewById(R.id.image_photo);
+        mSwitchCamera = view.findViewById(R.id.image_switch);
+        mFlashLamp = view.findViewById(R.id.image_flash);
         setFlashRes();
         mFlashLamp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 type_flash++;
-                if (type_flash > 0x023)
+                if (type_flash > 0x023) {
                     type_flash = TYPE_FLASH_AUTO;
+                }
                 setFlashRes();
             }
         });
-        mCaptureLayout = (CaptureLayout) view.findViewById(R.id.capture_layout);
+        mCaptureLayout = view.findViewById(R.id.capture_layout);
         mCaptureLayout.setDuration(mDuration);
-        mFoucsView = (FoucsView) view.findViewById(R.id.fouce_view);
+        mFoucsView = view.findViewById(R.id.fouce_view);
         mVideoView.getHolder().addCallback(this);
         //切换摄像头
         mSwitchCamera.setOnClickListener(new OnClickListener() {

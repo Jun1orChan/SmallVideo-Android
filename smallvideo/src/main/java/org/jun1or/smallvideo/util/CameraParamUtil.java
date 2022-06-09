@@ -13,7 +13,7 @@ import java.util.List;
 public class CameraParamUtil {
     private static final String TAG = "JCameraView";
     private CameraSizeComparator mSizeComparator = new CameraSizeComparator();
-    private static CameraParamUtil sCameraParamUtil = null;
+    private static volatile CameraParamUtil sCameraParamUtil = null;
 
     private CameraParamUtil() {
 
@@ -21,11 +21,11 @@ public class CameraParamUtil {
 
     public static CameraParamUtil getInstance() {
         if (sCameraParamUtil == null) {
-            sCameraParamUtil = new CameraParamUtil();
-            return sCameraParamUtil;
-        } else {
-            return sCameraParamUtil;
+            synchronized (CameraParamUtil.class) {
+                sCameraParamUtil = new CameraParamUtil();
+            }
         }
+        return sCameraParamUtil;
     }
 
     public Camera.Size getPreviewSize(List<Camera.Size> list, int th, float rate) {
